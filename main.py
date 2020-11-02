@@ -19,6 +19,7 @@ def main():
     x_train = x_train.reshape((x_train.shape[0],) + (height, width, channels)).astype("float32") / 255.
 
     gan = GAN(x_train, latent_dim = 32, width = 32, height = 32, channels = 3)
+    gan.train(iterations = 1000, batch_size = 20, save_dir = "results")
 
     #discriminator = init_discriminator(width = 32, height = 32, channels = 3)
     #discriminator.summary()
