@@ -6,9 +6,10 @@ def init_generator(latent_dim, channels):
 
     generator_input = keras.Input(shape = (latent_dim,))
 
-    x = layers.Dense(128 * 16 * 16)(generator_input)
+    half_latent_dim = int(latent_dim / 2)
+    x = layers.Dense(128 * half_latent_dim * half_latent_dim)(generator_input)
     x = layers.LeakyReLU()(x)
-    x = layers.Reshape((16, 16, 128))(x)
+    x = layers.Reshape((half_latent_dim, half_latent_dim, 128))(x)
 
     x = layers.Conv2D(256, 5, padding = "same")(x)
     x = layers.LeakyReLU()(x)
